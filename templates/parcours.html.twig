@@ -1,0 +1,40 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+
+{% block body %}
+    <section id="body-wrapper" class="section blog-listing">
+        <section class="container {{ grid_size }}">
+
+            <div class="columns">
+                <div class="column col-9 col-mx-auto col-sm-12 extlinkson bglinkson">
+                    <h1>{{ page.title }}</h1> 
+                    {# Si page parente Brice Boucard (menu : parcours) #}
+                    {% if page.menu == "Parcours" %}
+
+                        {# On affiche le début du CV #}
+                        <article>{{ collection.first.summary }}</article>
+                        {% set cvid = collection.first.id %}
+                        {# Et on affiche le sous-titre #}
+                        <h2>Études: dossiers et mémoires</h2>
+                        
+                        {% include 'partials/parcours-list-item.html.twig' with {'hlevel': 'h3' } %}               
+
+                    {% else %}
+                        {% include 'partials/parcours-list-item.html.twig' with {'hlevel': 'h2' } %} 
+                    {% endif %}
+                </div>
+            </div>
+                            
+            {% if config.plugins.pagination.enabled and collection.params.pagination %}
+                <div id="listing-footer">
+                    {% include 'partials/pagination.html.twig' with {base_url: page.url, pagination: collection.params.pagination} %}
+                </div>
+            {% endif %}
+
+        </section>
+    </section>
+{% endblock %}
+
+
+

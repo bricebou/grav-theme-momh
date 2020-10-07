@@ -1,0 +1,16 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block body %}
+  <section id="body-wrapper" class="section cv">
+    <section class="container {{ grid_size }}">
+
+      <article class="columns">
+        <div class="column col-9 col-mx-auto col-sm-12 extlinkson bglinkson">
+            <h1>{{page.title}}</h1>
+            {# {{ page.summary }} #}
+            {{ page.content }}
+        </div>
+      </article>
+    </section>
+  </section>
+{% endblock %}

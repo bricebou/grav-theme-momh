@@ -1,0 +1,61 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+    
+{% set type = page.slug %}
+{% if type == "insta" %}
+    {# ADDING LEAFLET  #}
+    {% do assets.addCss('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') %}
+    {% do assets.addJs('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') %}
+    {# LEAFLET FULLSCREEN PLUGIN #}
+    {% do assets.addCss('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') %}
+    {% do assets.addJs('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') %}
+{% endif %}
+
+{% set taxonpage = "" %}
+{% for conftaxon in config.site.taxonomies %}
+    {% if uri.param(conftaxon) %}
+        {% set taxonpage = conftaxon %}
+    {% endif %}
+{% endfor %}
+{% if taxonpage is not empty %}
+    {% set activetaxon = uri.param(taxonpage) %}
+{% endif %}
+
+{% block title %}{% if activetaxon %}{{ type }}#{{ activetaxon }} | {% endif %}{{ parent()  }}{% endblock %}
+
+
+{% block body %}
+    
+    <section id="body-wrapper" class="section {{ type }}-listing">
+        <section class="container {{ grid_size }}">
+            
+            {% if activetaxon %}
+                <div class="columns">
+                    <div class="column col-12 page-name">
+                        {{ page.title }}&#x266F;{{ activetaxon }}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="columns">
+                {% for child in collection %}
+                    <article class="col-12">
+                        <h1 class="titres"><a href="{{child.url}}">{{child.title}}</a></h1>
+                        {% include 'partials/' ~ type ~ '-item.html.twig' with {blog: page, page: child} %}
+                    </article>
+                {% endfor %}
+            </div>
+                            
+            {% if config.plugins.pagination.enabled and collection.params.pagination %}
+                <div id="listing-footer">
+                    {% include 'partials/pagination.html.twig' with {base_url: page.url, pagination: collection.params.pagination} %}
+                </div>
+            {% endif %}
+
+        </section>
+    </section>
+{% endblock %}
+
+
+

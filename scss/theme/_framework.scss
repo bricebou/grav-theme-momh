@@ -1,0 +1,66 @@
+// FROM QUARK THEME
+html {
+  height: 100%;
+}
+
+#body-wrapper {
+  .container {
+    padding: $vert-padding;
+  }
+
+  // Fixed Header solution
+  .header-fixed & {
+    padding-top: $header-height-large;
+  }
+}
+
+.header-fixed {
+  .hero + #start > #body-wrapper {
+    padding-top: 0;
+  }
+}
+
+section.section {
+  padding-left: $horiz-padding;
+  padding-right: $horiz-padding;
+  position: relative;
+}
+
+.overlay-light, .overlay-dark, .overlay-light-gradient, .overlay-dark-gradient {
+  z-index: 0;
+}
+
+// Overlay
+.image-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  .overlay-light & {
+    background: rgba(#fff, 0.4);
+  }
+
+  .overlay-light-gradient & {
+    background: linear-gradient(to bottom, rgba(#fff,0.5), rgba(#fff,0.2));
+  }
+
+  .overlay-dark & {
+    background: rgba(#000, 0.4);
+  }
+
+  .overlay-dark-gradient & {
+    background: linear-gradient(to bottom, rgba(#000,0.5), rgba(#000,0.2));
+  }
+}
+
+
+
+
+
+
+
+
+

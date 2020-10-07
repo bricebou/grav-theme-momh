@@ -1,0 +1,179 @@
+html {
+  @include fluid-type($size-xs, $size-xl, $min-responsive-font-size, $html-font-size);
+  font-weight: 300;
+}
+
+// Header Overrides
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2rem;
+  font-family: $title-font-family;
+  color: darken($body-font-color, 10%);
+  // font-weight: 600!important; // Overrides Spectre _typography.scss - 500 weight not available in Route 159 font
+  font-weight: 400!important;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: 400; // Overrides Spectre _typography.scss - 500 weight not available in Route 159 font
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-variant: small-caps;
+}
+
+.title-center {
+  h1, h2 {
+    text-align: center;
+  }
+}
+
+// LINKS
+
+a,
+a:visited {
+  color: $primary-color;
+}
+a:hover,
+a:focus,
+a:active {
+  color: $dark-color;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.bglinkson a {
+  @extend .links-bg;
+  color: $body-font-color;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+a.exlinksona {
+  // display: inline-block;
+  // white-space: nowrap;
+
+  i.icon {
+    margin-right: 0.1rem;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+// Tables
+.table > table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+// Codeblocks
+pre code, pre.xdebug-var-dump{
+  background: #fafafa;
+  display: block;
+  padding: 1rem !important;
+  line-height: 1.5;
+  color: inherit;
+  border-radius: 2px;
+  overflow-x: auto;
+}
+
+pre[class*="language-"] {
+  code {
+    border-radius: inherit;
+    padding: 0 !important;
+    overflow-x: initial;
+  }
+}
+
+pre {
+  margin-bottom: $line-height!important;
+  code:not(.hljs):not([class*="language-"]) {
+    background: #f8f8f8;
+  }
+}
+
+// Font Weights
+b,
+strong {
+  font-weight: 700;
+}
+
+.heavy {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 200;
+}
+
+// Colors
+.text-light {
+  color: rgba($light-color, 0.8);
+
+  h1, h2, h3, h4, h5, h6 {
+    color: rgba($light-color, 0.9);
+  }
+}
+
+// Error configuration
+#error {
+  text-align: center;
+  position: relative;
+  margin-top: 5rem;
+
+  .icon {
+    font-size: 50px;
+  }
+}
+
+// Messages
+#messages {
+  margin-bottom: 1rem;
+
+  .icon {
+    font-size: 1rem;
+  }
+}
+
+// Lists
+ul,
+ol {
+  margin-left: $unit-8;
+
+  ul,
+  ol {
+    margin-left: $unit-8;
+  }
+}
+
+ul {
+  list-style: disc outside;
+}
+
+ol {
+  list-style: decimal outside;
+}
+
+// Notices
+.notices {
+  margin: 1.5rem 0;
+  p {
+    margin: 1rem 0;
+  }
+}
+
+

@@ -1,0 +1,9 @@
+<span class="date">
+    <time class="dt-published" datetime="{{ moment|date("c") }}">
+    	{% if page.dateformat %}
+    		{{ moment|date(page.dateformat) }}
+    	{% else %}
+    		{{ moment|localizeddate('long', 'none', grav.language.getLanguage) }}
+    	{% endif %}
+    </time>
+</span>

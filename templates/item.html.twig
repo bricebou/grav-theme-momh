@@ -1,0 +1,43 @@
+{% extends 'partials/base.html.twig' %}
+
+{% if page.parent %}
+  {% set type = page.parent.slug %}
+{% endif %}
+
+{% if type == 'insta' %}
+{# ADDING LEAFLET  #}
+  {% do assets.addCss('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') %}
+  {% do assets.addJs('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') %}
+  {# LEAFLET FULLSCREEN PLUGIN #}
+  {% do assets.addCss('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') %}
+  {% do assets.addJs('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') %}
+
+  {# ADDING LEAFLET  #}
+  {% do assets.addCss('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') %}
+  {% do assets.addJs('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') %}
+  {# LEAFLET FULLSCREEN PLUGIN #}
+  {% do assets.addCss('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') %}
+  {% do assets.addJs('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') %}
+{% endif %}
+
+{% block body %}
+
+  <section id="body-wrapper" class="section {% if type == 'insta' %}instagallery{% endif %}">
+    <section class="container {{ grid_size }}">
+
+      <div class="columns">
+        <article class="column col-12">
+          <h1>{{page.title}}</h1>
+          {% include [
+            ('partials/' ~ type ~ '-item.html.twig'), 
+            'partials/blog-item.html.twig'
+          ] %}
+        </article>
+      </div>
+      
+      {% if not page.isLast or not page.isFirst %}
+        {% include 'partials/post-pagination.html.twig' %}
+      {% endif %}
+    </section>
+  </section>
+{% endblock %}
