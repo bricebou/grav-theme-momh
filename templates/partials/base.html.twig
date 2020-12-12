@@ -22,7 +22,6 @@
     {%  do assets.addCss('theme://css-compiled/spectre-icons.min.css') %}
     {# THEME AND CUSTOM CSS #}
     {% do assets.addCss('theme://css-compiled/theme.min.css') %}
-    {# {% do assets.addCss('theme://css/prism.css') %} #}
     {% do assets.addCss('theme://css/custom.css') %}
     {# FONTS #}
     {# PARCE QUE ICON CSS on ne charge pas Font Awesome #}
@@ -34,7 +33,6 @@
 
 {% block javascripts %}
     {% if theme_var('header-fitted') %}{% do assets.addJs('theme://js/fittext.js') %}{% endif %}
-    {% do assets.addJs('theme://js/site.js') %}
 {% endblock %}
 
 {% block assets deferred %}
@@ -64,24 +62,15 @@
 
 {% block bottom %}
     {{ assets.js('bottom')|raw }}
-    {# {% do assets.addJs('theme://js/prism.js') %} #}
     {% if theme_var('spectre.links') %}
-        <script>
-            // sans jQuery
-            // var extlinksonel = document.getElementsByClassName("extlinkson");
-            // for(var i = 0; i < extlinksonel.length; i++) {
-            //     var a = extlinksonel[i].querySelectorAll("a[href^=http]");
-            //     for(var j = 0; j < a.length; j++) {
-            //         var exticon = document.createElement("i");
-            //         exticon.setAttribute("class", "icon icon-link");
-            //         exticon.setAttribute("style", "margin-right: 0.1rem");
-            //         a[j].prepend(exticon);
-            //     }
-            // }
-            // Mais comme il est activé par Featherlight / TNT Search...
-            $(".extlinkson").find("a[href^=http]").addClass('exlinksona').prepend('<i class="icon icon-link"></i>');
-        </script>
+        {% do assets.addJs('theme://js/links.js') %}
     {% endif %}
+    <!-- Matomo -->
+    {% do assets.addJs('theme://js/matomo-tracking.js') %}
+    <script src="//matomo.momh.fr/matomo.js" async defer></script>
+    <noscript><p><img src="//matomo.momh.fr/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Matomo Code -->
 {% endblock %}
+
 </body>
 </html>
