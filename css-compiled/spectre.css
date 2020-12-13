@@ -303,13 +303,9 @@ legend { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.8rem; }
 
 .form-input:focus { box-shadow: 0 0 0 0.1rem rgba(154, 45, 129, 0.2); border-color: #9a2d81; }
 
-.form-input::-webkit-input-placeholder { color: #ccb3e6; }
-
 .form-input::-moz-placeholder { color: #ccb3e6; }
 
 .form-input:-ms-input-placeholder { color: #ccb3e6; }
-
-.form-input::-ms-input-placeholder { color: #ccb3e6; }
 
 .form-input::placeholder { color: #ccb3e6; }
 

@@ -46,43 +46,7 @@
 
 {% if latlngs %}
   
-  <div class="instamap" id="instamap{{ page.id }}" style="height: 18rem; width: 100%"></div>
+  <div class="instamap" id="instamap{{ page.id }}" data-lat="{{ latlngs[0][0] }}" data-lon="{{ latlngs[0][1] }}"></div>
 
-  <script>
-    var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 20,
-      attribution: '&copy; Openstreetmap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    });
-    var OpenStreetMap_France = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-      maxZoom: 20,
-      attribution: '&copy; Openstreetmap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    });
-    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-    });
-
-    var map{{ page.id }} = L.map('instamap{{ page.id }}', {
-      layers: [OpenStreetMap],
-      fullscreenControl: true,
-    }).setView([{{ latlngs[0][0] }}, {{ latlngs[0][1] }}], 13);
-
-    var baseMaps = {
-      "OpenStreetMap": OpenStreetMap,
-      "OpenStreetMap France": OpenStreetMap_France,
-      "Esri Satellite": Esri_WorldImagery
-    };
-
-    L.control.layers(baseMaps).addTo(map{{ page.id }});
-
-    // Un seul point affiché sur la carte,
-    // correspondant aux premières coordonnées GPS trouvées
-    var marker = L.marker([{{ latlngs[0][0] }}, {{ latlngs[0][1]  }}]).addTo(map{{ page.id }});
-
-    // Tous les points possibles, si les photos ont les métadonnées
-    // var coord = {{ latlngs|json_encode }};
-    // for (i = 0; i < coord.length; i++) {
-    //   var marker = L.marker([coord[i][0], coord[i][1]]).addTo(map{{ page.id }});
-    // };
-    
-  </script>
+  {% do assets.addJs('theme://js/maps.js', {group:'bottom'}) %}
 {% endif %}
